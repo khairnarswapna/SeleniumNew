@@ -1,9 +1,25 @@
 package com.bridgelabz.selenium;
 
+import org.apache.pdfbox.io.RandomAccessRead;
+import org.apache.pdfbox.pdfparser.PDFParser;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class MainTest extends BaseTest
 {
@@ -39,9 +55,8 @@ public class MainTest extends BaseTest
 
     }
 
-
     @Test
-    public void FBAccount() throws InterruptedException {
+    public void FBAccount() throws InterruptedException, AWTException {
 
         String baseUrl = "https://wwww.facebook.com";
         driver.get(baseUrl);
@@ -55,10 +70,10 @@ public class MainTest extends BaseTest
         SignIn.click();
         /*sign out functionality*/
         driver.findElement(By.xpath("//div[@id='userNavigationLabel']")).click();
+        Thread.sleep(5000);
         driver.findElement(By.xpath("//li[@class='_54ni navSubmenu _6398 _64kz __MenuItem']")).click();
 
     }
-
 
     @Test
     public void WebPage_ScrollUpAndDown() throws InterruptedException {
@@ -80,8 +95,55 @@ public class MainTest extends BaseTest
 
     }
 
+    @Test
+    public void DragnDrop() throws InterruptedException {
+
+        driver.get("http://demo.guru99.com/test/drag_drop.html");
+
+        //Element which needs to drag.
+        WebElement From=driver.findElement(By.xpath("//*[@id='credit2']/a"));
+
+        //Element on which need to drop.
+        WebElement To=driver.findElement(By.xpath("//*[@id='bank']/li"));
+
+        //Using Action class for drag and drop.
+        Actions act=new Actions(driver);
+
+         Thread.sleep(4000);
+        //Dragged and dropped.
+         act.dragAndDrop(From, To).build().perform();
+         Thread.sleep(5000);
+    }
 
 
+    @Test
+    public void ReadPDF() throws Exception {
+        URL TestURL = new URL("http://www.axmag.com/download/pdfurl-guide.pdf");
+
+        BufferedInputStream TestFile = new BufferedInputStream(TestURL.openStream());
+        PDFParser TestPDF = new PDFParser((RandomAccessRead) TestFile);
+        TestPDF.parse();
+        String TestText = new PDFTextStripper().getText(TestPDF.getPDDocument());
+        Assert.assertTrue(TestText.contains("Open the setting.xml,you can see it is like this"));
+
+
+    }
+
+    @Test
+    public void PDFReader() throws IOException {
+
+        driver.get("http://www.pdf995.com/samples/pdf.pdf");
+        driver.manage().window().maximize();
+        String Currentlink=driver.getCurrentUrl();
+        URL url=new URL(Currentlink);
+        InputStream is=url.openStream();
+        BufferedInputStream fp=new BufferedInputStream(is);
+        PDDocument document=null;
+        document=PDDocument.load(fp);
+        String pdfContent= new PDFTextStripper().getText(document);
+        System.out.println(pdfContent);
+
+    }
 
 
 }

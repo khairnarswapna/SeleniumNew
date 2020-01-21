@@ -18,7 +18,7 @@ public class BaseTest {
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-notifications");
-        System.setProperty("webdriver.chrome.driver","chromedriver");
+        System.setProperty("webdriver.chrome.driver","/home/admin1/IdeaProjects/SeleniumNew/chromedriver");
         driver=new ChromeDriver(options);
         driver.manage().window().maximize();
     }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.bridgelabz.selenium.MultipleWindowsClass" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-01-21T09:52:58" hostname="admin1-desktop" time="9.204">
+  <properties/>
+  <testcase name="testForHandlingMultipleWindows" classname="com.bridgelabz.selenium.MultipleWindowsClass" time="9.204"/>
+  <system-out><![CDATA[Tech Mahindra
+LnT
+Baker Hughes
+]]></system-out>
+  <system-err><![CDATA[Starting ChromeDriver 79.0.3945.36 (3582db32b33893869b8c1339e8f4d9ed1816f143-refs/branch-heads/3945@{#614}) on port 21447
+Only local connections are allowed.
+Please protect ports used by ChromeDriver and related test frameworks to prevent access by malicious code.
+Jan 21, 2020 3:22:57 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+]]></system-err>
+</testsuite>
