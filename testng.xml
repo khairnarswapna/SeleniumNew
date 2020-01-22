@@ -1,32 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
-    <test verbose="2" preserve-order="true" name="/home/admin1/IdeaProjects/SeleniumNew">
+    <test verbose="2" preserve-order="true"
+          name="/home/admin1/IdeaProjects/SeleniumNew/src/test/java/com/bridgelabz/selenium/CrossBrowserScript.java">
         <classes>
-            <class name="com.bridgelabz.selenium.AmazonOTPHandle">
+            <class name="com.bridgelabz.selenium.CrossBrowserScript">
                 <methods>
-                    <include name="testName"/>
-                </methods>
-            </class>
-            <class name="com.bridgelabz.selenium.DragAndDrop">
-                <methods>
-                    <include name="DragnDrop"/>
-                </methods>
-            </class>
-            <class name="com.bridgelabz.selenium.MainTest">
-                <methods>
-                    <include name="Navigate_gmailWebBrower"/>
-                    <include name="AccessingGitHubAccount"/>
-                    <include name="FBAccount"/>
-                    <include name="WebPage_ScrollUpAndDown"/>
-                    <include name="DragnDrop"/>
-                    <include name="ReadPDF"/>
-                    <include name="PDFReader"/>
-                </methods>
-            </class>
-            <class name="com.bridgelabz.selenium.MultipleWindowsClass">
-                <methods>
-                    <include name="testForHandlingMultipleWindows"/>
+                    <include name="testParameterWithXML"/>
                 </methods>
             </class>
         </classes>

@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Iterator;
+import java.util.Set;
 
 public class MainTest extends BaseTest
 {
@@ -143,6 +145,35 @@ public class MainTest extends BaseTest
         String pdfContent= new PDFTextStripper().getText(document);
         System.out.println(pdfContent);
 
+    }
+
+
+    @Test
+    public void testHandleBrowserPopUpWindow() throws InterruptedException, AWTException {
+
+        //Launching the site.
+        driver.get("http://demo.guru99.com/popup.php");
+        driver.manage().window().maximize();
+        driver.findElement(By.xpath("//*[contains(@href,'popup.php')]")).click();
+        String MainWindow = driver.getWindowHandle();
+        // To handle all new opened window.
+        Set<String> windowHandles = driver.getWindowHandles();
+        Iterator<String> iterator = windowHandles.iterator();
+        while (iterator.hasNext()) { String next = iterator.next();
+        if (!MainWindow.equalsIgnoreCase(next)) {
+
+        // Switching to Child window
+            driver.switchTo().window(next);
+            driver.findElement(By.name("emailid")).sendKeys("gaurav.3n@gmail.com ");
+            Thread.sleep(2000);
+            driver.findElement(By.name("btnLogin")).click();
+            Thread.sleep(2000);
+        // Closing the Child Window.
+            driver.close();
+            }
+        }
+        // Switching to Parent window i.e Main Window.
+        driver.switchTo().window(MainWindow);
     }
 
 
